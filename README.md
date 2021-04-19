@@ -8,7 +8,12 @@
 ![Preview](images/preview.png)
 
 ## Installation and usage
-### Installation
+**Prerequisites:**
+ - [Node.js](https://nodejs.org/en/)
+ - [NPM](https://www.npmjs.com/get-npm) - usually comes with Node.js
+  
+
+Simply run:
 ```
 $ npm install -g spotify-cv-inject
 ```

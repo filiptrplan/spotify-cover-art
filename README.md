@@ -1,17 +1,47 @@
-# Spotify cover art injector
-Program for adding cover art into playlists on the Spotify desktop client.
+# Spotify Cover Art Injector
+
+### Program for adding cover art into playlists on the Spotify desktop client.
+
+![Preview](images/preview.png)
 
 ## Installation and usage
+### Installation
 ```
 $ npm install -g spotify-cv-inject
+```
+### Launching
+You can run the command in two ways:
+```
 $ spotify-cv [PATH_TO_SPOTIFY]
-```
-You can run the command as such:
-```
 $ spotify-cv
 ```
-But then you need to run the Spotify app with the following flag:
+If you specify the path, Spotify launches with all the appropriate flags. 
+
+If you omit the path, you need to run the Spotify app with the following flag:
 ```
 --remote-debugging-port=3131
 ```
-You can add this flag to your shortcuts or find another way to run it.
+You can add this flag to your shortcut or find another way to run it.
+
+### Usage
+1. Launch the program according to [Launching](###launching)
+2. Click `Get Token` at the top of the Spotify app
+   
+   ![Get Token](images/get.png)
+
+3. After clicking `Authorize`, you will be redirected to the following page where you must copy the token you are provided with.
+
+![Copy Token](images/token.png)
+
+4. Paste the token into the input and click `Set Token`
+
+![Set Token](images/copied.png)
+
+5. The app should work as intended! If it doesn't, completely close the app(don't forget the system tray) and launch it according to [Launching](###launching).
+
+## Troubleshooting
+If you come across a problem there is little support I can provide because the method of retrieving isn't wholly reliable. I recommend clearing the tokens by cliking the dropdown next to your profile and restarting the app with `spotify-cv [PATH_TO_SPOTIFY]`.
+
+![Clear Tokens](images/clear.png)
+
+If that doesn't work feel free to post it in the issues.

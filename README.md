@@ -1,5 +1,8 @@
 # Spotify Cover Art Injector
 
+[![Version](https://img.shields.io/npm/v/spotify-cv-inject.svg)](https://npmjs.org/package/spotify-cv-inject)
+[![License](https://img.shields.io/npm/l/spotify-cv-inject.svg)](https://github.com/https://github.com/filiptrplan/spotify-cover-art/blob/master/package.json)
+
 ### Program for adding cover art into playlists on the Spotify desktop client.
 
 ![Preview](images/preview.png)

@@ -48,7 +48,10 @@ You can add this flag to your shortcut or find another way to run it.
 5. The app should work as intended! If it doesn't, completely close the app(don't forget the system tray) and launch it according to [Launching](###launching).
 
 ## Troubleshooting
-If you come across a problem there is little support I can provide because the method of retrieving isn't wholly reliable. I recommend clearing the tokens by cliking the dropdown next to your profile and restarting the app with `spotify-cv [PATH_TO_SPOTIFY]`.
+If you come across a problem there is little support I can provide because the method of retrieving isn't wholly reliable. I recommend clearing the tokens by clicking the dropdown next to your profile and restarting the app with: 
+```
+$ spotify-cv [PATH_TO_SPOTIFY]
+```
 
 ![Clear Tokens](images/clear.png)
 

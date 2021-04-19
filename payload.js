@@ -26,6 +26,16 @@ function eraseCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
+function getToken() {
+    const clientID = "2163afaa51b446fba4b6afc9c681747a";
+    const url = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=code&redirect_uri=https://spotify-cover-art.pages.dev/index.html`;
+    window.open(url);
+}
+
+function setToken() {
+
+}
+
 let urlParams = new URLSearchParams(window.location.search);
 let myParam = urlParams.get('code');
 console.log(myParam);
@@ -34,9 +44,9 @@ if (getCookie("accessToken") == null) {
     const viewContent = document.querySelector("#main");
     const warning = document.createElement("div");
     warning.style = "margin: auto";
-    warning.innerHTML = `<button onclick="setToken" id="setButton">Set token</button>
+    warning.innerHTML = `<button onclick="setToken();" id="setButton">Set token</button>
     <input type="text" id="tokenInput" name="tokenInput" placeholder="Input token here...">
-    <button  onclick="getToken" id="getButton">Get token</button>`;
+    <button onclick="getToken();" id="getButton">Get token</button>`;
     viewContent.prepend(warning);
 }
 
@@ -51,11 +61,7 @@ rows.forEach(row => {
     });
 });
 
-function getToken() {
-    const clientID = "2163afaa51b446fba4b6afc9c681747a";
-    const url = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=code&redirect_uri=https://zlink.app.spotify.com/index.html`;
-    window.location.replace(url);
-}
+
 
 
 

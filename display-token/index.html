@@ -12,7 +12,8 @@
     <div id="main">
         <h2>Copy this token and input it into the program.</h2>
         <h3>Your token:</h3><br>
-        <input onClick="this.select();" id="token" value="token" />
+        <input onClick="this.select();" onkeypress="return false;" id="token" value="token" placeholder="No token!" />
+        <h3>You can close this window after you copy the token.</h3>
     </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);

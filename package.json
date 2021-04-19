@@ -1,0 +1,12 @@
+{
+  "name": "spotify-cover-art",
+  "version": "1.0.0",
+  "description": "Program for adding cover art in playlists into the Spotify desktop client.",
+  "main": "index.js",
+  "repository": "git@github.com:filiptrplan/spotify-cover-art.git",
+  "author": "Filip Trplan <filip@trplan.si>",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^7.4.5"
+  }
+}

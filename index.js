@@ -5,6 +5,8 @@ const WebSocket = require("ws");
 const fs = require("fs");
 const waitPort = require("wait-port");
 const exec = require('child_process').exec;
+var path = require('path');
+var appDir = path.dirname(require.main.filename);
 
 const options = {
     hostname: "localhost",
@@ -61,7 +63,7 @@ function sendJS(window) {
         "id": 1337,
         "method": "Runtime.evaluate",
         "params": {
-            "expression": fs.readFileSync("payload.js").toString(),
+            "expression": fs.readFileSync(path.join(appDir, "payload.js")).toString(),
             "silent": true,
         }
     };

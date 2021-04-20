@@ -1,6 +1,6 @@
 {
   "name": "spotify-cv-inject",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Program for adding cover art into playlists on the Spotify desktop client.",
   "main": "index.js",
   "repository": "git@github.com:filiptrplan/spotify-cover-art.git",
@@ -13,5 +13,11 @@
     "wait-port": "^0.2.9",
     "ws": "^7.4.5"
   },
-  "keywords": ["spotify", "cover art", "spotify cover art", "spotify inject", "spotify add cover art"]
+  "keywords": [
+    "spotify",
+    "cover art",
+    "spotify cover art",
+    "spotify inject",
+    "spotify add cover art"
+  ]
 }

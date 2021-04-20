@@ -10,6 +10,7 @@
     "spotify-cv": "./index.js"
   },
   "dependencies": {
+    "@mishguru/selfupdate": "^4.8.0",
     "wait-port": "^0.2.9",
     "ws": "^7.4.5"
   },

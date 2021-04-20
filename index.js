@@ -6,22 +6,40 @@ const fs = require("fs");
 const waitPort = require("wait-port");
 const exec = require('child_process').exec;
 var path = require('path');
+const { installPackageVersion, fetchLatestPackageVersion, respawnProcess } = require("@mishguru/selfupdate");
 var appDir = path.dirname(require.main.filename);
+const pkg = require(path.join(appDir, "package.json"));
 
-const options = {
-    hostname: "localhost",
-    port: 3131,
-    path: "/json",
-    method: "GET"
-};
+getVersion();
 
-const args = process.argv.slice(2);
+async function getVersion() {
+    const latestVersion = await fetchLatestPackageVersion(pkg.name);
+    if (pkg.version !== latestVersion) {
+        await installPackageVersion(pkg.name, latestVersion);
 
-wait();
+        console.log(`Upgraded from ${pkg.version} to ${latestVersion}. Restarting...`);
 
-if (typeof (args[0]) != "undefined" && fs.existsSync(args[0])) {
-    let spotify = exec(`${args[0]} --remote-debugging-port=3131`);
-    spotify.unref();
+        respawnProcess();
+    } else {
+        main();
+    }
+}
+
+function main() {
+    const options = {
+        hostname: "localhost",
+        port: 3131,
+        path: "/json",
+        method: "GET"
+    };
+
+    const args = process.argv.slice(2);
+    wait();
+
+    if (typeof (args[0]) != "undefined" && fs.existsSync(args[0])) {
+        let spotify = exec(`${args[0]} --remote-debugging-port=3131`);
+        spotify.unref();
+    }
 }
 
 function wait() {

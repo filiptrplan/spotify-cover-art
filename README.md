@@ -47,6 +47,8 @@ You can add this flag to your shortcut or find another way to run it.
 
 5. The app should work as intended! If it doesn't, completely close the app(don't forget the system tray) and launch it according to [Launching](###launching).
 
+**Changing the cover art size:** Just click on the arrow next to your profile name and click `Set Cover Size`. The covers on the liked songs will refresh when you scroll past them.
+
 ## Troubleshooting
 If you come across a problem there is little support I can provide because the method of retrieving the cover art isn't wholly reliable. I recommend clearing the tokens by clicking the dropdown next to your profile and restarting the app with: 
 ```

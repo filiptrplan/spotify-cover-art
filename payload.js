@@ -345,7 +345,7 @@ function setImageSize() {
 
 function addProfileButtons() {
     addProfileButton("Clear Tokens", clearTokens);
-    addProfileButton("Set cover size", setImageSize);
+    addProfileButton("Set Cover Size", setImageSize);
 }
 
 function addProfileButton(name, fn) {

@@ -204,46 +204,62 @@ function displayTokenInput() {
     viewContent.prepend(warning);
 }
 
+const listObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length > 0) {
+            getCoverArt(mutation.addedNodes[0]);
+        }
+    });
+});
+const containerObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length > 0) {
+            if (mutation.addedNodes[0].classList.contains("tracklist-playlist")) {
+                listObserver.observe(mutation.addedNodes[0].querySelector("tbody"), { childList: true });
+            }
+        }
+    });
+});
+const mainObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length > 0) {
+            if (mutation.addedNodes[0].id == "app-collection-songs" || mutation.addedNodes[0].id == "app-playlist") {
+                const iframe = mutation.addedNodes[0];
+                const id = mutation.addedNodes[0].id;
+                iframe.onload = () => {
+                    const iframe = document.getElementById(id);
+                    attachToIframe(iframe);
+                };
+            }
+        }
+    });
+});
+
 function initObserver() {
-    const listObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length > 0) {
-                getCoverArt(mutation.addedNodes[0]);
-            }
-        });
-    });
-    const containerObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length > 0) {
-                if (mutation.addedNodes[0].classList.contains("tracklist-playlist")) {
-                    listObserver.observe(mutation.addedNodes[0].querySelector("tbody"), { childList: true });
-                }
-            }
-        });
-    });
-    const mainObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length > 0) {
-                if (mutation.addedNodes[0].id == "app-collection-songs" || mutation.addedNodes[0].id == "app-playlist") {
-                    const iframe = mutation.addedNodes[0];
-                    const id = mutation.addedNodes[0].id;
-                    iframe.onload = () => {
-                        const iframe = document.getElementById(id);
-                        const innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
-                        const checkInterval = setInterval(() => {
-                            const container = id == "app-collection-songs" ? innerDoc.querySelector("#list-placeholder") : innerDoc.querySelector("#tracklist");
-                            if (container == null) return;
-                            containerObserver.observe(container, { childList: true, attributes: true });
-                            console.log(container.querySelector(".tracklist-playlist > tbody"));
-                            listObserver.observe(container.querySelector(".tracklist-playlist > tbody"), { childList: true });
-                            clearInterval(checkInterval);
-                        }, 100);
-                    };
-                }
-            }
-        });
-    });
     mainObserver.observe(document.querySelector("#view-content"), { childList: true, attributes: true });
+
+    const collectionSongs = document.querySelector("#app-collection-songs");
+    const playlist = document.querySelector("#app-playlist");
+    console.log(collectionSongs, playlist);
+    if (collectionSongs != null) {
+        attachToIframe(collectionSongs);
+    }
+    if (playlist != null) {
+        attachToIframe(playlist);
+    }
+}
+
+function attachToIframe(iframe) {
+    console.log(iframe);
+    const innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+    console.log(innerDoc);
+    const checkInterval = setInterval(() => {
+        const container = iframe.id == "app-collection-songs" ? innerDoc.querySelector("#list-placeholder") : innerDoc.querySelector("#tracklist");
+        if (container == null) return;
+        containerObserver.observe(container, { childList: true, attributes: true });
+        listObserver.observe(container.querySelector(".tracklist-playlist > tbody"), { childList: true });
+        clearInterval(checkInterval);
+    }, 100);
 }
 
 

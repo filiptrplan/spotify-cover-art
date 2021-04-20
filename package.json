@@ -12,5 +12,6 @@
   "dependencies": {
     "wait-port": "^0.2.9",
     "ws": "^7.4.5"
-  }
+  },
+  "keywords": ["spotify", "cover art", "spotify cover art", "spotify inject", "spotify add cover art"]
 }

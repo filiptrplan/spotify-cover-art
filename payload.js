@@ -5,7 +5,7 @@ let imageCache = new Map();
 let oldSize = 0;
 let refreshing = false;
 let toFetch = [];
-const imageSize = 32;
+let imageSize = getCookie("imageSize") == null ? 32 : parseInt(getCookie("imageSize"));
 
 function setCookie(name, value, seconds) {
     var expires = "";
@@ -157,6 +157,7 @@ async function getToken() {
 
 function setToken() {
     const token = document.querySelector("#tokenInput").value;
+    if (token == "") return;
     setCookie("userToken", token, 9999 * 24 * 60 * 60);
     fetchToken();
     document.querySelector("#warning").remove();
@@ -280,7 +281,14 @@ function writeCache(force = false) {
 }
 
 function getCoverArt(row) {
-    if (row.querySelector(".cover-art") != null) return;
+    let image = row.querySelector(".cover-art");
+    if (image != null) {
+        if (image.width != imageSize) {
+            image.remove();
+        } else {
+            return;
+        }
+    }
     // if (typeof (imageCache) == "undefined") imageCache = new Map();
 
     const uri = row.dataset.uri;
@@ -329,18 +337,28 @@ function addCover(row, url) {
     nameNode.prepend(image);
 }
 
-function addClearToken() {
+function setImageSize() {
+    let size = prompt("Image size in pixels(px)", imageSize.toString());
+    imageSize = parseInt(size);
+    setCookie("imageSize", size);
+}
+
+function addProfileButtons() {
+    addProfileButton("Clear Tokens", clearTokens);
+    addProfileButton("Set cover size", setImageSize);
+}
+
+function addProfileButton(name, fn) {
     const container = document.querySelector(".Menu__root-items");
     let button = document.createElement("button");
     button.className = "MenuItem";
-    button.innerHTML = "Clear tokens";
+    button.innerHTML = name;
     button.setAttribute("role", "menuitem");
     button.setAttribute("data-submenu", "false");
     button.setAttribute("tabindex", "-1");
     button.setAttribute("data-ta-id", "");
     container.append(button);
-    button.addEventListener("click", clearTokens);
-    console.log(button);
+    button.addEventListener("click", fn);
 }
 
 
@@ -366,7 +384,7 @@ function init() {
     initObserver();
     initCache();
 
-    document.querySelector("#profile-menu-toggle").addEventListener("click", addClearToken);
+    document.querySelector("#profile-menu-toggle").addEventListener("click", addProfileButtons);
 
     setInterval(writeCache, 1000);
 }

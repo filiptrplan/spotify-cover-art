@@ -339,6 +339,7 @@ function addCover(row, url) {
 
 function setImageSize() {
     let size = prompt("Image size in pixels(px)", imageSize.toString());
+    if (size == "" || size == null || isNaN(size)) return;
     imageSize = parseInt(size);
     setCookie("imageSize", size);
 }

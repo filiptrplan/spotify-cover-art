@@ -5,6 +5,8 @@
 
 ### Program for adding cover art into playlists on the Spotify desktop client.
 
+## Disclaimer: This program only works on the old version of Spotify, as this feature is already included in the new one.
+
 ![Preview](images/preview.png)
 
 ## Installation and usage

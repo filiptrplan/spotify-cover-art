@@ -34,7 +34,7 @@ If you omit the path, you need to run the Spotify app with the following flag:
 You can add this flag to your shortcut or find another way to run it.
 
 ### Usage
-1. Launch the program according to [Launching](###launching)
+1. Launch the program according to [Launching](#launching)
 2. Click `Get Token` at the top of the Spotify app
    
    ![Get Token](images/get.png)
@@ -47,7 +47,7 @@ You can add this flag to your shortcut or find another way to run it.
 
 ![Set Token](images/copied.png)
 
-5. The app should work as intended! If it doesn't, completely close the app(don't forget the system tray) and launch it according to [Launching](###launching).
+5. The app should work as intended! If it doesn't, completely close the app(don't forget the system tray) and launch it according to [Launching](#launching).
 
 **Changing the cover art size:** Just click on the arrow next to your profile name and click `Set Cover Size`. The covers on the liked songs will refresh when you scroll past them.
 
